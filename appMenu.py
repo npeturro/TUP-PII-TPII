@@ -5,8 +5,17 @@ import os
 cursos = [
     Curso("POO"),
     Curso("LABO"),
-    Curso("Estadisticas")
+    Curso("Estadisticas"),
+    Curso("LABO II"),
+    Curso("POO II")
 ]
+
+nombre_curso = "POO II"
+for curso in cursos:
+    if curso.nombre == nombre_curso:
+        curso_poo = curso
+contrasenia = curso_poo.contrasenia_matriculacion
+print(contrasenia)
 
 estudiantes = [
     Estudiante("Nicolas", "Rodriguez", "jordiENP@gmail.com", "ABC123!", "12345", "2023"),
