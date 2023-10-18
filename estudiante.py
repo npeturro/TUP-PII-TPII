@@ -1,4 +1,5 @@
 from usuario import *
+from curso import *
 
 class Estudiante(Usuario):
     def __init__(self, nombre, apellido, email, contrasenia, legajo: int, anio_inscripcion_carrera: int):
@@ -37,6 +38,11 @@ class Estudiante(Usuario):
         print("------------")
 
     def matricular_en_curso(self, curso):
-        self.__mis_cursos.append(curso)
 
-    
+        for cursos in self.mis_cursos:
+            if curso == cursos:
+                print("Usted ya se encuentra matriculado/a en este curso")
+                return ", ".join(self.mis_cursos)
+            
+        self.mis_cursos.append(curso)
+        return ", ".join(self.mis_cursos)
