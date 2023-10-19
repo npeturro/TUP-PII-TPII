@@ -3,13 +3,19 @@ import string
 
 
 class Curso():
+    contrasenias = {}
+
     def __init__(self, nombre: str, contrasenia_matriculacion = None):
         self.__nombre = nombre
-        if contrasenia_matriculacion == None:
-            self.__contrasenia_matriculacion = Curso.generar_contrasenia()
+        if contrasenia_matriculacion is None:
+            if nombre in Curso.contrasenias:
+                self.__contrasenia_matriculacion = Curso.contrasenias[nombre]
+            else:
+                nueva_contrasenia = Curso.generar_contrasenia()
+                Curso.contrasenias[nombre] = nueva_contrasenia
+                self.__contrasenia_matriculacion = nueva_contrasenia
         else:
             self.__contrasenia_matriculacion = contrasenia_matriculacion
-        """self.__contrasenia_matriculacion = Curso.generar_contrasenia()""" 
 
     @property
     def nombre(self):

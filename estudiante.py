@@ -37,12 +37,19 @@ class Estudiante(Usuario):
         print(f"Año de inscripción: {self.anio_inscripcion_carrera}")
         print("------------")
 
-    def matricular_en_curso(self, curso):
+    def matricular_en_curso(self, curso, password):
 
         for cursos in self.mis_cursos:
             if curso == cursos:
-                print("Usted ya se encuentra matriculado/a en este curso")
-                return ", ".join(self.mis_cursos)
+                '''return ", ".join(self.mis_cursos)'''
+                return False
             
-        self.mis_cursos.append(curso)
-        return ", ".join(self.mis_cursos)
+        if curso in Curso.contrasenias and password == Curso.contrasenias[curso]:
+            self.mis_cursos.append(curso)
+            return True
+        else:
+            return None
+     
+ 
+
+

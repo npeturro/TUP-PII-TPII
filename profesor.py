@@ -5,6 +5,7 @@ class Profesor(Usuario):
         super().__init__(nombre, apellido, email, contrasenia)
         self.__titulo = titulo
         self.__anio_egreso = anio_egreso
+        self.__mis_cursos = []
 
     @property
     def titulo(self):
@@ -21,6 +22,10 @@ class Profesor(Usuario):
     @anio_egreso.setter
     def anio_egreso(self, nuevo_anio_egreso):
         self.__anio_egreso = nuevo_anio_egreso
+
+    @property
+    def mis_cursos(self):
+        return self.__mis_cursos
     
     def __str__(self):
         print("DATOS PROFESOR")
@@ -30,3 +35,6 @@ class Profesor(Usuario):
         print(f"Título: {self.titulo}")
         print(f"Año de egreso: {self.anio_egreso}")
         print("------------")
+
+    def dictar_curso(self, curso):
+        self.mis_cursos.append(curso)
