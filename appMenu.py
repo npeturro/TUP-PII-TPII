@@ -117,10 +117,9 @@ while respuesta != "salir":
                 
                   
         elif int(opt) == 3:
-            ej = Curso("Ingles I")
-            ej2 = Curso("Ingles II")
-            ej.__str__()
-            ej2.__str__()
+            for curso in cursos:
+                print(f"Materia: {curso.nombre} Carrera: Tecnicatura Universitaria en Programación")
+                print(f"Contraseña: {curso.contrasenia_matriculacion}")
             
         elif int(opt) == 4:
             respuesta = "salir"
