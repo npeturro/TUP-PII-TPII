@@ -23,9 +23,8 @@ profesores = [
     Profesor("Jordi", "Gimbernat", "jordania@gmail.com", "2222", "Ingeniero en casi todo", "2100"),
 ]
 
-print("Bienvenido!")
+print("\n¡Bienvenido!")
 respuesta = ''
-respuesta2 = ''
 
 def menu():
     print("1 - Ingresar como alumno")
@@ -48,42 +47,69 @@ while respuesta != "salir":
     opt = input("\n Ingrese la opción de menú: ")
     os.system ("cls")
     if opt.isnumeric():
+        
+        #---INGRESO ALUMNOS---#
+        
         if int(opt) == 1:
             email_ingresado = input("Ingrese su email: ")
             contrasenia_ingresada = input("Ingrese su contraseña: ")
+            alumno_encontrado = False  # Variable para controlar si se encontró un alumno
+
             for alumno in estudiantes:
                 if email_ingresado == alumno.email:
                     if contrasenia_ingresada == alumno.contrasenia:
-                        print(f"¡Hola {alumno.nombre}!")
-                        menu_estudiante()
-                        opt2 = input("\n Ingrese la opción de menú: ")
-                        if int(opt2) == 1:
-                            for indice, curso in enumerate(cursos, 1):
-                                print(f"{indice} - {curso.nombre}")
-                            opc3 = input("\n Ingrese la opcion del curso al cual quiere matricularse: ")
-                            if int(opc3) == 1:
-                                curso = "Ingles I"
-                                password = input("Ingrese la contraseña del curso: ")
-                                lista_cursos = alumno.matricular_en_curso(curso, password)
+                        print(f"\n¡Hola {alumno.nombre}!")
+                        respuesta2 = ''
+                        alumno_encontrado = True
+                        while respuesta2 != "salir":
+                            menu_estudiante()
+                            opt2 = input("\n Ingrese la opción de menú: ")
+                            os.system ("cls")
+                            
+                            #---MATRICULARSE A CURSO---#
+                            if int(opt2) == 1:
+                                for indice, curso in enumerate(cursos, 1):
+                                    print(f"{indice} - {curso.nombre}")
+                                opc3 = int(input("\n Ingrese la opcion del curso al cual quiere matricularse: "))
+                                nombre = cursos[opc3-1].nombre
+                                password = input(" Ingrese la contraseña del curso: ")
+                                lista_cursos = alumno.matricular_en_curso(nombre, password)
                                 if lista_cursos == True:
+                                    print("\n-------------")
                                     print("Curso agregado con éxito!")
-                            elif lista_cursos == False:
+                                    print("-------------\n")
+                                elif lista_cursos == False:
+                                    print("\n-------------")
                                     print("Usted ya se encuentra matriculado/a en este curso")
-                            else:
+                                    print("-------------\n")
+                                else:
+                                    print("\n-------------")
                                     print("Contraseña incorrecta")
-                        elif int(opt2) == 2 :
-                            for indice, mis_cursos in enumerate(alumno.mis_cursos,1):
-                                print(f"{indice} - {mis_cursos}")   
-                            opt4 = int(input("\n Ingrese el número del curso si desea ver más detalles: "))
-                            nombre = alumno.mis_cursos[opt4-1]
-                            print(f"Nombre: {nombre}")
-                            print("-------------")
-                        elif int(opt2) == 3 :
-                            respuesta2 = "salir"    
+                                    print("-------------\n")
+                            
+                            #---LISTA DE CURSOS DEL ALUMNO---#
+                            elif int(opt2) == 2 :
+                                for indice, mis_cursos in enumerate(alumno.mis_cursos,1):
+                                    print(f"{indice} - {mis_cursos}")   
+                                opt4 = int(input("\n Ingrese el número del curso si desea ver más detalles: "))
+                                nombre = alumno.mis_cursos[opt4-1]
+                                print(f"\nNombre: {nombre}")
+                                print("-------------\n")
+
+                            elif int(opt2) == 3 :
+                                respuesta2 = "salir"
+                                
+                        
+
                     else:
                         print("Contraseña incorrecta")
-            else:
-                print("Email NO encontrado. Debe darse de alta en alumnado")    
+
+            if not alumno_encontrado:            
+                print("Email NO encontrado. Debe darse de alta en alumnado")
+                    
+        
+        #---INGRESO DOCENTES---#        
+
         elif int(opt) == 2:
             email_ingresado = input("Ingrese su email: ")
             contrasenia_ingresada = input("Ingrese su contraseña: ")
