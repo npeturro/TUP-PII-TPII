@@ -42,7 +42,7 @@ class Curso():
        print("DATOS CURSO")
        print(f"Nombre: {self.nombre}")
        print(f"Contraseña: {self.contrasenia_matriculacion}")
-       print("------------")
+       print("------------\n")
 
     
     

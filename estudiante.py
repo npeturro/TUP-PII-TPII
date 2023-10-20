@@ -41,7 +41,6 @@ class Estudiante(Usuario):
 
         for cursos in self.mis_cursos:
             if curso == cursos:
-                '''return ", ".join(self.mis_cursos)'''
                 return False
             
         if curso in Curso.contrasenias and password == Curso.contrasenias[curso]:
