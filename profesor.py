@@ -28,13 +28,7 @@ class Profesor(Usuario):
         return self.__mis_cursos
     
     def __str__(self):
-        print("DATOS PROFESOR")
-        print(f"Nombre: {self.nombre}")
-        print(f"Apellido: {self.apellido}")
-        print(f"E-mail: {self.email}")
-        print(f"Título: {self.titulo}")
-        print(f"Año de egreso: {self.anio_egreso}")
-        print("------------")
+        return print(f"Nombre: {self.nombre}\nApellido: {self.apellido}\nE-mail: {self.email}\nTítulo: {self.titulo}\nAño de egreso: {self.anio_egreso}")
 
     def dictar_curso(self, curso):
         self.mis_cursos.append(curso)

@@ -29,13 +29,7 @@ class Estudiante(Usuario):
         return self.__mis_cursos
     
     def __str__(self):
-        print("DATOS ESTUDIANTE")
-        print(f"Nombre: {self.nombre}")
-        print(f"Apellido: {self.apellido}")
-        print(f"E-mail: {self.email}")
-        print(f"Legajo: {self.legajo}")
-        print(f"Año de inscripción: {self.anio_inscripcion_carrera}")
-        print("------------")
+        return print(f"Nombre: {self.nombre}\nApellido: {self.apellido}\nE-mail: {self.email}\nLegajo: {self.legajo}\nAño de inscripción: {self.anio_inscripcion_carrera}")
 
     def matricular_en_curso(self, curso, password):
 

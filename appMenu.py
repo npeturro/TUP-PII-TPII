@@ -148,7 +148,9 @@ while respuesta != "salir":
                                     curso_ingresado = Curso(nuevo_curso)
                                     cursos.append(curso_ingresado)
                                     profesor.dictar_curso(nuevo_curso)
+                                    print("DATOS CURSO")
                                     curso_ingresado.__str__()
+                                    print("------------\n")
                                     #---LISTA DE CURSOS DEL DOCENTE---#
                                 elif int(opt2) == 2:
                                     for indice, mis_cursos in enumerate(profesor.mis_cursos,1):

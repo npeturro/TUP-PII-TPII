@@ -39,10 +39,7 @@ class Curso():
         return cod
 
     def __str__(self):
-       print("DATOS CURSO")
-       print(f"Nombre: {self.nombre}")
-       print(f"Contraseña: {self.contrasenia_matriculacion}")
-       print("------------\n")
+       return print(f"Nombre: {self.nombre}\nContraseña: {self.contrasenia_matriculacion}")
 
     
     
