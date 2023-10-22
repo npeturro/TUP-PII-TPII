@@ -90,7 +90,8 @@ while respuesta != "salir":
                                             print("-" * 22)
                                             print("Contraseña incorrecta")
                                             print("-" * 22)
-                                        input("Presione enter para continuar..")                                        
+                                        input("Presione enter para continuar..")
+                                        os.system ("cls") 
                                     else:
                                         print("Ingrese una opción válida")
                                         input("Presione enter para continuar..")
@@ -103,11 +104,13 @@ while respuesta != "salir":
                                         print(f"{indice} - {mis_cursos}")   
                                     print("\n Ingrese el número del curso si desea ver más detalles")
                                     opt4 = int(input("o 0 para salir: "))
+                                    os.system ("cls")
                                     if opt4 != 0:
                                         nombre = alumno.mis_cursos[opt4-1]
                                         print("-------------")
                                         print(f"Nombre: {nombre}")
                                         print("-------------\n")
+                                        
                                 elif int(opt2) == 3 :
                                     respuesta2 = "salir"
                                 else:
@@ -144,13 +147,18 @@ while respuesta != "salir":
                                 if int(opt2) == 1:
                                     #Se podria validar que no este el curso
                                     nuevo_curso = input("Ingrese el nombre del curso: ")
-                                    print("\n-------------")
-                                    curso_ingresado = Curso(nuevo_curso)
-                                    cursos.append(curso_ingresado)
-                                    profesor.dictar_curso(nuevo_curso)
-                                    print("DATOS CURSO")
-                                    curso_ingresado.__str__()
-                                    print("------------\n")
+                                    if nuevo_curso in profesor.mis_cursos:
+                                        print("Ingrese un curso con distinto nombre")
+                                        input("Presione enter para continuar..")
+                                        os.system ("cls")
+                                    else:
+                                        print("\n-------------")
+                                        curso_ingresado = Curso(nuevo_curso)
+                                        cursos.append(curso_ingresado)
+                                        profesor.dictar_curso(nuevo_curso)
+                                        print("DATOS CURSO")
+                                        curso_ingresado.__str__()
+                                        print("------------\n")
                                     #---LISTA DE CURSOS DEL DOCENTE---#
                                 elif int(opt2) == 2:
                                     for indice, mis_cursos in enumerate(profesor.mis_cursos,1):
@@ -163,6 +171,8 @@ while respuesta != "salir":
                                         print(f"Nombre: {nombre}")
                                         print(f"Contraseña: {Curso.contrasenias[nombre]}")
                                         print("-------------")
+                                        input("Presione enter para continuar..")
+                                        os.system ("cls")
                                 elif int(opt2) == 3 :
                                     respuesta2 = "salir"
                                 else:
@@ -186,14 +196,14 @@ while respuesta != "salir":
             max_length_contrasenia = max(len(curso.contrasenia_matriculacion) for curso in cursos_ordenados)
 
             for i, curso in enumerate(cursos_ordenados):
-                print("-" * 97)
+                print("-" * 77)
                 # Alinea el nombre de la materia y la contraseña en columnas usando ljust()
-                # La password a modo desarrollador, despues hay que sacarla
-                print(f"Materia: {curso.nombre.ljust(max_length_nombre)} | Contraseña: {curso.contrasenia_matriculacion.ljust(max_length_contrasenia)} | Carrera: Tecnicatura Universitaria en Programación")
+                # print(Contraseña: {curso.contrasenia_matriculacion}) Para saber la contraseña de las materias queda comentado!
+                print(f"Materia: {curso.nombre.ljust(max_length_nombre)} | Carrera: Tecnicatura Universitaria en Programación")
 
                 # Comprueba si es la última materia, agrega una ultima linea de guiones y deja un espacio antes de mostrar el menú
                 if i == len(cursos_ordenados) - 1:
-                    print("-" * 97)
+                    print("-" * 77)
                     print()
             
         elif int(opt) == 4:
@@ -207,4 +217,4 @@ while respuesta != "salir":
     input("Presione cualquier tecla para continuar....")
     os.system ("cls")
 
-print("Hasta luego!.")
+print("Hasta luego!.") 
