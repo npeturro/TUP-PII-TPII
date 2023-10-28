@@ -40,7 +40,7 @@ class Usuario():
         self._contrasenia = nuevo_contrasenia
 
     def __str__(self):
-        return print(f"Nombre: {self.nombre}\nApellido: {self.apellido}\nE-mail: {self.email}")
+        return f"Nombre: {self.nombre}\nApellido: {self.apellido}\nE-mail: {self.email}"
 
     def validar_credenciales(self, email_ingresado: str, contrasenia_ingresada: str):
 

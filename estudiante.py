@@ -29,7 +29,7 @@ class Estudiante(Usuario):
         return self.__mis_cursos
     
     def __str__(self):
-        return print(f"Nombre: {self.nombre}\nApellido: {self.apellido}\nE-mail: {self.email}\nLegajo: {self.legajo}\nAño de inscripción: {self.anio_inscripcion_carrera}")
+        return f"Nombre: {self.nombre}\nApellido: {self.apellido}\nE-mail: {self.email}\nLegajo: {self.legajo}\nAño de inscripción: {self.anio_inscripcion_carrera}"
 
     def matricular_en_curso(self, curso, password):
 
@@ -42,7 +42,9 @@ class Estudiante(Usuario):
             return True
         else:
             return None
-     
+    
+    def desmatricular_curso(self, curso: object):
+        return self.mis_cursos.remove(curso)
  
 
 

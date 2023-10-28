@@ -4,9 +4,11 @@ import string
 
 class Curso():
     contrasenias = {}
-
+    __prox_cod = 0
+    
     def __init__(self, nombre: str, contrasenia_matriculacion = None):
         self.__nombre = nombre
+        self.__codigo = Curso.get_prox_cod()
         if contrasenia_matriculacion is None:
             if nombre in Curso.contrasenias:
                 self.__contrasenia_matriculacion = Curso.contrasenias[nombre]
@@ -16,6 +18,15 @@ class Curso():
                 self.__contrasenia_matriculacion = nueva_contrasenia
         else:
             self.__contrasenia_matriculacion = contrasenia_matriculacion
+    
+    @classmethod
+    def get_prox_cod(cls):
+        cls.__prox_cod += 1
+        return cls.__prox_cod
+    
+    @property
+    def codigo(self):
+        return self.__codigo
 
     @property
     def nombre(self):
@@ -39,7 +50,7 @@ class Curso():
         return cod
 
     def __str__(self):
-       return print(f"Nombre: {self.nombre}\nContraseña: {self.contrasenia_matriculacion}")
+       return f"Nombre: {self.nombre}\nContraseña: {self.contrasenia_matriculacion}"
 
     
     
