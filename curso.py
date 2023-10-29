@@ -10,6 +10,7 @@ class Curso():
     def __init__(self, nombre: str, contrasenia_matriculacion = None):
         self.__nombre = nombre
         self.__codigo = Curso.prox_codigo()
+        self.__nombre_carrera = "Tecnicatura Universitaria en Programación"
         if contrasenia_matriculacion is None:
             if nombre in Curso.contrasenias:
                 self.__contrasenia_matriculacion = Curso.contrasenias[nombre]
@@ -24,7 +25,6 @@ class Curso():
     @property
     def nombre(self):
         return self.__nombre
-    
     @nombre.setter
     def nombre(self, nuevo_nombre):
         self.__nombre = nuevo_nombre
@@ -41,7 +41,6 @@ class Curso():
     @property
     def contrasenia_matriculacion(self):
         return self.__contrasenia_matriculacion
-    
     @contrasenia_matriculacion.setter
     def contrasenia_matriculacion(self, nueva_contrasenia_matriculacion):
         self.__contrasenia_matriculacion = nueva_contrasenia_matriculacion
@@ -49,6 +48,13 @@ class Curso():
     @property
     def archivos(self):
         return self.__archivos
+    
+    @property
+    def nombre_carrera(self):
+        return self.__nombre_carrera
+    @nombre_carrera.setter
+    def nombre_carrera(self, nuevo_nombre_carrera):
+        self.__nombre_carrera = nuevo_nombre_carrera
 
     def generar_contrasenia():
         characters = string.ascii_letters + string.digits

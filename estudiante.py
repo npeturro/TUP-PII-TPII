@@ -7,7 +7,7 @@ class Estudiante(Usuario):
         self.__legajo = legajo
         self.__anio_inscripcion_carrera = anio_inscripcion_carrera
         self.__mis_cursos = []
-        """self.__carrera = Estudiante.matricular_en_carrera"""
+        self.__carrera = "Tecnicatura Universitaria en Programación"
 
     @property
     def legajo(self):
@@ -48,14 +48,9 @@ class Estudiante(Usuario):
         else:
             return None
         
-    def desmatricular_curso(self, curso: object):
+    def desmatricular_curso(self, curso):
         
         self.mis_cursos.remove(curso)
-
-    """def matricular_en_carrera(self, carrera: object):
-
-        self.carrera.append(carrera)"""
-
      
  
 
