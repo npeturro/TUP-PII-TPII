@@ -1,6 +1,14 @@
 from estudiante import *
 from curso import *
 from profesor import *
+from carrera import *
+from archivo import *
+
+
+
+carreras = [
+    Carrera("Tecnicatura Universitaria en Programación", 2)
+]
 
 cursos = [
     Curso("Ingles I"),
@@ -11,11 +19,15 @@ cursos = [
     Curso("Programación II")
 ]
 
+carreras[0].agregar_materias(cursos[4])
+
 estudiantes = [
     Estudiante("Nicolas", "Rodriguez", "a", "123", "12345", "2023"),
     Estudiante("Juan", "Perez", "juan@gmail.com", "123", "ABC", "2022"),
     Estudiante("Pedro", "Ramirez", "pedrito@gmail.com", "1111", "4567", "2021")
 ]
+
+"""estudiantes[0].matricular_en_carrera(carreras[0])"""
 
 profesores = [
     Profesor("Paula", "Molina", "a", "123", "Kinesiologia", "2006"),
@@ -23,3 +35,11 @@ profesores = [
     Profesor("Nicolas", "Peturro", "nico@gmail.com", "1111", "Analista en Sistemas", "2021"),
     Profesor("Jordi", "Gimbernat", "jordania@gmail.com", "2222", "Ingeniero en casi todo", "2100"),
 ]
+
+archivos = [
+    Archivo("tpi", "pdf"),
+    Archivo("Practica1", "pdf")
+]
+
+cursos[4].nuevo_archivo(archivos[0])
+cursos[4].nuevo_archivo(archivos[1])

@@ -1,10 +1,11 @@
 from datetime import *
 
 class Archivo():
-    def __init__(self, nombre: str, fecha: date, formato: str):
+    def __init__(self, nombre: str, formato: str) -> None:
         self.__nombre = nombre
-        self.__fecha = date.today().strftime("%d/%m/%Y")
+        self.__fecha = date.today()
         self.__formato = formato
+        self.__cant_archivos = []
 
     @property
     def nombre(self):
@@ -30,5 +31,9 @@ class Archivo():
     def formato(self, nuevo_formato):
         self.__formato = nuevo_formato
 
+    @property
+    def cant_archivos(self):
+        return self.__cant_archivos
+
     def __str__(self):
-        return f"Nombre: {self.nombre}\nFecha: {self.fecha}\nFormato: {self.formato}"
+       return f"{self.nombre}.{self.formato}"

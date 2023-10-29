@@ -1,1 +1,1 @@
-)
+carreras[0].agregar_materias(cursos[4])

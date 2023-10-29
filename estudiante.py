@@ -7,6 +7,7 @@ class Estudiante(Usuario):
         self.__legajo = legajo
         self.__anio_inscripcion_carrera = anio_inscripcion_carrera
         self.__mis_cursos = []
+        """self.__carrera = Estudiante.matricular_en_carrera"""
 
     @property
     def legajo(self):
@@ -28,8 +29,12 @@ class Estudiante(Usuario):
     def mis_cursos(self):
         return self.__mis_cursos
     
+    @property
+    def carrera(self):
+        return self.__carrera
+    
     def __str__(self):
-        return f"Nombre: {self.nombre}\nApellido: {self.apellido}\nE-mail: {self.email}\nLegajo: {self.legajo}\nAño de inscripción: {self.anio_inscripcion_carrera}"
+        return f"DATOS ESTUDIANTE:\nNombre: {self.nombre}\nApellido: {self.apellido}\nE-mail: {self.email}\nLegajo: {self.legajo}\Año de inscripción: {self.anio_inscripcion_carrera}"
 
     def matricular_en_curso(self, curso, password):
 
@@ -42,9 +47,16 @@ class Estudiante(Usuario):
             return True
         else:
             return None
-    
+        
     def desmatricular_curso(self, curso: object):
-        return self.mis_cursos.remove(curso)
+        
+        self.mis_cursos.remove(curso)
+
+    """def matricular_en_carrera(self, carrera: object):
+
+        self.carrera.append(carrera)"""
+
+     
  
 
 
