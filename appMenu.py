@@ -75,12 +75,16 @@ while respuesta != "salir":
                                                     print("Contraseña incorrecta")
                                                     print("-" * 22)
                                                 input("Presione enter para continuar..")
+                                                os.system ("cls") 
                                             else:
                                                 print("Ingrese una opción válida")
                                                 input("Presione enter para continuar..")
                                                 os.system ("cls")
                                         else:
-                                            print("Usted no se encuentra cursando la carrera en la que se dicta dicho curso")                                        
+                                            print("Usted no se encuentra cursando la carrera en la que se dicta dicho curso")
+                                            input("Presione enter para continuar..")
+                                            os.system ("cls") 
+                                                                                  
                                 
                                     AlumnosMis_cursos = sorted(alumno.mis_cursos, key=lambda curso: curso, reverse=True)
                                     #---DESMATRICULARSE A CURSO---#
@@ -93,6 +97,8 @@ while respuesta != "salir":
                                         curso = AlumnosMis_cursos[opc3-1]
                                         alumno.desmatricular_curso(curso)
                                         print("Desmatriculado exitosamente!")
+                                        input("Presione enter para continuar..")
+                                        os.system ("cls") 
 
                                     #---LISTA DE CURSOS DEL ALUMNO---#
                                 elif int(opt2) == 3 :
@@ -101,6 +107,7 @@ while respuesta != "salir":
                                         print(f"{indice} - {mis_cursos}")   
                                     print("\n Ingrese el número del curso si desea ver más detalles")
                                     opt4 = int(input("o 0 para salir: "))
+                                    os.system ("cls")
                                     if opt4 != 0:
                                         nombre = alumno.mis_cursos[opt4-1]
                                         print("-------------")
@@ -117,7 +124,8 @@ while respuesta != "salir":
                                     input("Presione enter para continuar..")
                             except:
                                 print("Ingrese una opción válida")
-                                input("Presione enter para continuar..")             
+                                input("Presione enter para continuar..")
+                                os.system ("cls")
                     else:
                         print("Contraseña incorrecta")
             if not alumno_encontrado:            
@@ -164,13 +172,20 @@ while respuesta != "salir":
                                         if opc4 <= len(carreras):
                                             carrera_seleccionada = carreras[opc4-1]
                                         nuevo_curso = input("Ingrese el nombre del curso: ")
-                                        curso_ingresado = Curso(nuevo_curso)
-                                        cursos.append(curso_ingresado)
-                                        carrera_seleccionada.agregar_materias(curso_ingresado)
-                                        profesor.dictar_curso(nuevo_curso)
-                                        print("-----------------")
-                                        print(curso_ingresado.__str__())
-                                        print("-----------------")
+                                        if nuevo_curso in profesor.mis_cursos:
+                                                print("Ingrese un curso con distinto nombre")
+                                                input("Presione enter para continuar..")
+                                                os.system ("cls")
+                                        else:
+                                            curso_ingresado = Curso(nuevo_curso)
+                                            cursos.append(curso_ingresado)
+                                            carrera_seleccionada.agregar_materias(curso_ingresado)
+                                            profesor.dictar_curso(nuevo_curso)
+                                            print("-----------------")
+                                            print(curso_ingresado.__str__())
+                                            print("-----------------")
+                                            input("Presione enter para continuar..")
+                                            os.system ("cls") 
                                         #---LISTA DE CURSOS DEL DOCENTE---#
                                     
                                         profesorMis_cursos = sorted(profesor.mis_cursos, key=lambda curso: curso, reverse=True)
@@ -199,19 +214,26 @@ while respuesta != "salir":
                                                 for curso in cursos:
                                                     if curso.nombre == nombre:
                                                         curso.nuevo_archivo(nuevo_archivo)
-                                                
+                                                print("Archivo creado exitosamente!")
+                                                input("Presione enter para continuar..")
+                                                os.system ("cls") 
+                                            else:
+                                                input("Presione enter para continuar..")
+                                                os.system ("cls") 
                                     elif int(opt2) == 3 :
                                         respuesta2 = "salir"
                                     else:
                                         print("Ingrese una opción correcta")
                                         input("Presione enter para continuar..")
+                                        os.system ("cls")
                                 except:
                                     print("Ingrese una opción válida")
                                     input("Presione enter para continuar..")
+                                    os.system ("cls") 
                         else:
                             print("Contraseña incorrecta")
 
-                if not docente_encontrado:
+                if email_ingresado != profesor.email:
                     print("Email NO encontrado.")
         
         #---VER TODOS LOS CURSOS DE LA CARRERA---#
