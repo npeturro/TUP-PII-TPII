@@ -247,14 +247,13 @@ while respuesta != "salir":
             
 
             for i, curso in enumerate(cursos_ordenados):
-                print("-" * 97)
+                print("-" * 88)
                 # Alinea el nombre de la materia y la contraseña en columnas usando ljust()
-                # La password a modo desarrollador, despues hay que sacarla
-                print(f"Materia: {curso.nombre.ljust(max_length_nombre)} | Contraseña: {curso.contrasenia_matriculacion.ljust(max_length_contrasenia)} | Codigo: {curso.codigo} | Carrera: Tecnicatura Universitaria en Programación")
+                print(f"Materia: {curso.nombre.ljust(max_length_nombre)}  Codigo: {curso.codigo} | Carrera: Tecnicatura Universitaria en Programación")
 
                 # Comprueba si es la última materia, agrega una ultima linea de guiones y deja un espacio antes de mostrar el menú
                 if i == len(cursos_ordenados) - 1:
-                    print("-" * 97)
+                    print("-" * 88)
                     print()
             
         elif int(opt) == 4:
