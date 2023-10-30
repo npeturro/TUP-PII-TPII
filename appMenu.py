@@ -37,11 +37,11 @@ while respuesta != "salir":
 
             for alumno in estudiantes:
                 if email_ingresado == alumno.email:
+                    alumno_encontrado = True
                     if contrasenia_ingresada == alumno.contrasenia:
                         os.system ("cls")
                         print(f"\n¡Hola {alumno.nombre}!")
                         respuesta2 = ''
-                        alumno_encontrado = True
                         while respuesta2 != "salir":                            
                             menu_estudiante()
                             opt2 = input("\n Ingrese la opción de menú: ")
@@ -98,6 +98,10 @@ while respuesta != "salir":
                                         alumno.desmatricular_curso(curso)
                                         print("Desmatriculado exitosamente!")
                                         input("Presione enter para continuar..")
+                                        os.system ("cls")
+                                    else:
+                                        print("Ingrese una opción válida")
+                                        input("Presione enter para continuar..")
                                         os.system ("cls") 
 
                                     #---LISTA DE CURSOS DEL ALUMNO---#
@@ -137,12 +141,13 @@ while respuesta != "salir":
             email_ingresado = input("Ingrese su email: ")
             if email_ingresado == "admin":
                 print("Ingrese los datos para darse de alta")
-                nombre = input(" Ingrese su nombre: ")
-                apellido = input(" Ingrese su apellido: ")
-                email = input(" Ingrese su email: ")
-                contraseña = input(" Ingrese contraseña: ")
-                titulo = input(" Ingrese nombre del titulo: ")
-                anio_egreso = input(" Ingrese el año de egreso: ")
+                print("--------------------")
+                nombre = input("Ingrese su nombre: ")
+                apellido = input("Ingrese su apellido: ")
+                email = input("Ingrese su email: ")
+                contraseña = input("Ingrese contraseña: ")
+                titulo = input("Ingrese nombre del titulo: ")
+                anio_egreso = input("Ingrese el año de egreso: ")
                 nuevo_profesor = Profesor(nombre, apellido, email, contraseña, titulo, anio_egreso)
                 profesores.append(nuevo_profesor)
                 print("Su usuario fue dado de alta exitosamente!")
@@ -153,11 +158,11 @@ while respuesta != "salir":
 
                 for profesor in profesores:
                     if email_ingresado == profesor.email:
+                        docente_encontrado = True
                         if contrasenia_ingresada == profesor.contrasenia:
                             os.system ("cls")
                             print(f"\n¡Hola {profesor.nombre}!")
                             respuesta2 = ''
-                            docente_encontrado = True
                             while respuesta2 != "salir":
                                 menu_profesor()
                                 opt2 = input("\n Ingrese la opción de menú: ")
@@ -165,10 +170,9 @@ while respuesta != "salir":
                                 #---CARGAR UN CURSO---#
                                 try:
                                     if int(opt2) == 1:
-                                        #Se podria validar que no este el curso
                                         for indice, carrera in enumerate(carreras,1):
                                             print(f"{indice} - {carrera.nombre}")
-                                        opc4 = int(input("\n Ingrese el numero de carrera a la cual se le asignará la materia: "))
+                                        opc4 = int(input("\n Ingrese el número de carrera a la cual se le asignará la materia: "))
                                         if opc4 <= len(carreras):
                                             carrera_seleccionada = carreras[opc4-1]
                                         nuevo_curso = input("Ingrese el nombre del curso: ")
@@ -233,7 +237,7 @@ while respuesta != "salir":
                         else:
                             print("Contraseña incorrecta")
 
-                if email_ingresado != profesor.email:
+                if not docente_encontrado:
                     print("Email NO encontrado.")
         
         #---VER TODOS LOS CURSOS DE LA CARRERA---#
@@ -249,7 +253,7 @@ while respuesta != "salir":
             for i, curso in enumerate(cursos_ordenados):
                 print("-" * 88)
                 # Alinea el nombre de la materia y la contraseña en columnas usando ljust()
-                print(f"Materia: {curso.nombre.ljust(max_length_nombre)}  Codigo: {curso.codigo} | Carrera: Tecnicatura Universitaria en Programación")
+                print(f"Materia: {curso.nombre.ljust(max_length_nombre)} | Codigo: {curso.codigo} | Carrera: Tecnicatura Universitaria en Programación")
 
                 # Comprueba si es la última materia, agrega una ultima linea de guiones y deja un espacio antes de mostrar el menú
                 if i == len(cursos_ordenados) - 1:
