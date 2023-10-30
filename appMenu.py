@@ -164,36 +164,38 @@ while respuesta != "salir":
                                         if opc4 <= len(carreras):
                                             carrera_seleccionada = carreras[opc4-1]
                                         nuevo_curso = input("Ingrese el nombre del curso: ")
-                                        print("\n-------------")
                                         curso_ingresado = Curso(nuevo_curso)
                                         cursos.append(curso_ingresado)
                                         carrera_seleccionada.agregar_materias(curso_ingresado)
                                         profesor.dictar_curso(nuevo_curso)
-                                        curso_ingresado.__str__()
+                                        print("-----------------")
+                                        print(curso_ingresado.__str__())
+                                        print("-----------------")
                                         #---LISTA DE CURSOS DEL DOCENTE---#
                                     
                                     elif int(opt2) == 2:
-                                        cursos_ordenados = sorted(profesor.mis_cursos, key=lambda curso: curso.nombre, reverse = True) #Ordenando alfabeticamente la lista por nombre de curso
-                                        for indice, mis_cursos in enumerate(cursos_ordenados,1):
-                                            print(f"{indice} - {mis_cursos}")
+
+                                        for indice, curso in enumerate(profesor.mis_cursos, 1):
+                                            print(f"{indice} - {curso}")
                                         print("\n Ingrese el número del curso si desea ver mas información: ")
                                         opt5 = int(input("o 0 para salir: "))
                                         if opt5 != 0:
                                             nombre = profesor.mis_cursos[opt5-1]
                                             print("-------------")
                                             print(f"Nombre: {nombre}")
-                                            curso_seleccionado = cursos[nombre]
-                                            print(f"Codigo: {curso_seleccionado.codigo}")
-                                            print(f"Contraseña: {Curso.contrasenias[curso_seleccionado]}")
-                                            numero_archivos = len(curso_seleccionado.archivos)
-                                            print(f"Cantidad de archivos: {numero_archivos}")
+                                            for curso in cursos:
+                                                if curso.nombre == nombre:
+                                                    print(f"Codigo: {curso.codigo}")
+                                                    print(f"Contraseña: {curso.contrasenia_matriculacion}")
+                                                    numero_archivos = len(curso.archivos)
+                                                    print(f"Cantidad de archivos: {numero_archivos}")
                                             print("-------------")
-                                            respuesta3 = input("¿Desea agregar un archivo adjunto? (S/N): ")
-                                            if respuesta3 == "S":
+                                            respuesta3 = input("¿Desea agregar un archivo adjunto? (S/N): ").lower()
+                                            if respuesta3 == "s":
                                                 nombre = input("Ingrese el nombre del archivo: ")
                                                 formato = input("Ingrese el formato del archivo: ")
                                                 nuevo_archivo = Archivo(nombre, formato)
-                                                curso_seleccionado.nuevo_archivo(nuevo_archivo)
+                                                curso.nuevo_archivo(nuevo_archivo)
                                                 
                                     elif int(opt2) == 3 :
                                         respuesta2 = "salir"
