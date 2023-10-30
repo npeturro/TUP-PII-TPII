@@ -82,15 +82,15 @@ while respuesta != "salir":
                                         else:
                                             print("Usted no se encuentra cursando la carrera en la que se dicta dicho curso")                                        
                                 
-
+                                    AlumnosMis_cursos = sorted(alumno.mis_cursos, key=lambda curso: curso, reverse=True)
                                     #---DESMATRICULARSE A CURSO---#
                                 elif int(opt2) == 2:
                                     
-                                    for indice, curso in enumerate(alumno.mis_cursos, 1):
+                                    for indice, curso in enumerate(AlumnosMis_cursos, 1):
                                         print(f"{indice} - {curso}")
                                     opc3 = int(input("\n Ingrese el numero del curso al cual quiere desmatricularse: "))
-                                    if opc3 <= len(alumno.mis_cursos):
-                                        curso = alumno.mis_cursos[opc3-1]
+                                    if opc3 <= len(AlumnosMis_cursos):
+                                        curso = AlumnosMis_cursos[opc3-1]
                                         alumno.desmatricular_curso(curso)
                                         print("Desmatriculado exitosamente!")
 
@@ -173,14 +173,15 @@ while respuesta != "salir":
                                         print("-----------------")
                                         #---LISTA DE CURSOS DEL DOCENTE---#
                                     
+                                        profesorMis_cursos = sorted(profesor.mis_cursos, key=lambda curso: curso, reverse=True)
                                     elif int(opt2) == 2:
-
-                                        for indice, curso in enumerate(profesor.mis_cursos, 1):
+                                        
+                                        for indice, curso in enumerate(profesorMis_cursos, 1):
                                             print(f"{indice} - {curso}")
                                         print("\n Ingrese el número del curso si desea ver mas información: ")
                                         opt5 = int(input("o 0 para salir: "))
                                         if opt5 != 0:
-                                            nombre = profesor.mis_cursos[opt5-1]
+                                            nombre = profesorMis_cursos[opt5-1]
                                             print("-------------")
                                             print(f"Nombre: {nombre}")
                                             for curso in cursos:
@@ -192,10 +193,12 @@ while respuesta != "salir":
                                             print("-------------")
                                             respuesta3 = input("¿Desea agregar un archivo adjunto? (S/N): ").lower()
                                             if respuesta3 == "s":
-                                                nombre = input("Ingrese el nombre del archivo: ")
+                                                nombre_archivo = input("Ingrese el nombre del archivo: ")
                                                 formato = input("Ingrese el formato del archivo: ")
-                                                nuevo_archivo = Archivo(nombre, formato)
-                                                curso.nuevo_archivo(nuevo_archivo)
+                                                nuevo_archivo = Archivo(nombre_archivo, formato)
+                                                for curso in cursos:
+                                                    if curso.nombre == nombre:
+                                                        curso.nuevo_archivo(nuevo_archivo)
                                                 
                                     elif int(opt2) == 3 :
                                         respuesta2 = "salir"
