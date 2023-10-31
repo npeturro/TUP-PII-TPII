@@ -1,1 +1,2 @@
-carreras[0].agregar_materias(cursos[4])
+    print("Ingrese un curso con distinto nombre")
+                                                input("Presione enter para co

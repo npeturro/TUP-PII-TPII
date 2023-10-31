@@ -54,7 +54,7 @@ while respuesta != "salir":
                                             cursos_ordenados_codigo = sorted(cursos, key=lambda curso: curso.codigo) #Ordenanda la lista por codigo de curso
                                             for curso in cursos_ordenados_codigo:
                                                 print(f"{curso.codigo} - {curso.nombre}")
-                                            opc3 = int(input("\n Ingrese el codigo del curso al cual quiere matricularse: "))
+                                            opc3 = int(input("\nIngrese el codigo del curso al cual quiere matricularse: "))
                                             if opc3 <= len(cursos):
                                                 #Guardando instancia de curso
                                                 for curso in cursos:
@@ -107,19 +107,23 @@ while respuesta != "salir":
                                     #---LISTA DE CURSOS DEL ALUMNO---#
                                 elif int(opt2) == 3 :
                                     
-                                    for indice, mis_cursos in enumerate(alumno.mis_cursos,1):
-                                        print(f"{indice} - {mis_cursos}")   
-                                    print("\n Ingrese el número del curso si desea ver más detalles")
+                                    for indice, curso in enumerate(alumno.mis_cursos, 1):
+                                        print(f"{indice} - {curso}")
+                                        
+                                    print("\nIngrese el número del curso si desea ver más detalles")
                                     opt4 = int(input("o 0 para salir: "))
-                                    os.system ("cls")
-                                    if opt4 != 0:
-                                        nombre = alumno.mis_cursos[opt4-1]
-                                        print("-------------")
-                                        print(f"Nombre: {nombre}")
-                                        curso_seleccionado = cursos[nombre]
-                                        for archivo in curso_seleccionado.archivos:
-                                            print(f"{archivo.__str__()}")
-                                        print("-------------\n")
+                                    os.system("cls")
+                                    if opt4 <= len(alumno.mis_cursos) and opt4 != 0:
+                                        nombre = alumno.mis_cursos[opt4 - 1]
+                                        for curso in cursos:  # Asegúrate de que "cursos" esté definido y contenga la información correcta
+                                            if curso.nombre == nombre:
+                                                archivos_curso = curso.archivos
+                                                print("-------------")
+                                                print(f"Nombre: {nombre}")
+                                                for archivo in archivos_curso:
+                                                    print(f"{archivo.__str__()}")
+                                                print("-------------\n")
+
                                 
                                 elif int(opt2) == 4 :
                                     respuesta2 = "salir"
@@ -175,11 +179,18 @@ while respuesta != "salir":
                                         opc4 = int(input("\n Ingrese el número de carrera a la cual se le asignará la materia: "))
                                         if opc4 <= len(carreras):
                                             carrera_seleccionada = carreras[opc4-1]
-                                        nuevo_curso = input("Ingrese el nombre del curso: ")
+                                        nuevo_curso = input(" Ingrese el nombre del curso: ").title()
+                                        
                                         if nuevo_curso in profesor.mis_cursos:
                                                 print("Ingrese un curso con distinto nombre")
                                                 input("Presione enter para continuar..")
                                                 os.system ("cls")
+                                        
+                                        elif nuevo_curso == (''):
+                                            print("Debe ingresar un nombre")
+                                            input("Presione enter para continuar..")
+                                            os.system ("cls")                                            
+                                            
                                         else:
                                             curso_ingresado = Curso(nuevo_curso)
                                             cursos.append(curso_ingresado)
@@ -243,22 +254,25 @@ while respuesta != "salir":
         #---VER TODOS LOS CURSOS DE LA CARRERA---#
             
         elif int(opt) == 3:
-            cursos_ordenados = sorted(cursos, key=lambda curso: curso.nombre) #Ordenando alfabeticamente la lista por nombre de curso
-
-            #Guardando la longitud máxima del nombre de la materia y la contraseña
-            max_length_nombre = max(len(curso.nombre) for curso in cursos_ordenados)
-            max_length_contrasenia = max(len(curso.contrasenia_matriculacion) for curso in cursos_ordenados)
             
+            if not cursos:
+                print("No se encuentran cursos cargados")
+            else:
+            
+                cursos_ordenados = sorted(cursos, key=lambda curso: curso.nombre) #Ordenando alfabeticamente la lista por nombre de curso
 
-            for i, curso in enumerate(cursos_ordenados):
-                print("-" * 88)
-                # Alinea el nombre de la materia y la contraseña en columnas usando ljust()
-                print(f"Materia: {curso.nombre.ljust(max_length_nombre)} | Codigo: {curso.codigo} | Carrera: Tecnicatura Universitaria en Programación")
+                #Guardando la longitud máxima del nombre de la materia y la contraseña
+                max_length_nombre = max(len(curso.nombre) for curso in cursos_ordenados)            
 
-                # Comprueba si es la última materia, agrega una ultima linea de guiones y deja un espacio antes de mostrar el menú
-                if i == len(cursos_ordenados) - 1:
-                    print("-" * 88)
-                    print()
+                for i, curso in enumerate(cursos_ordenados):
+                    print("-" * 89)
+                    # Alinea el nombre de la materia y la contraseña en columnas usando ljust()
+                    print(f"Materia: {curso.nombre.ljust(max_length_nombre)} | Codigo: {curso.codigo} | Carrera: Tecnicatura Universitaria en Programación")
+
+                    # Comprueba si es la última materia, agrega una ultima linea de guiones y deja un espacio antes de mostrar el menú
+                    if i == len(cursos_ordenados) - 1:
+                        print("-" * 89)
+                        print()
             
         elif int(opt) == 4:
             respuesta = "salir"
